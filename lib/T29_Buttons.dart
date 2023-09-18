@@ -90,7 +90,7 @@ class MyButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               height: 100,
               child: ElevatedButton(
                   onPressed: () {},
@@ -101,8 +101,26 @@ class MyButtons extends StatelessWidget {
                           MaterialStateProperty.all(Colors.deepOrange),
                       shape: MaterialStateProperty.all(const CircleBorder(
                           side: BorderSide(color: Colors.greenAccent)))),
-                  child: const Text("圆形按钮",style: TextStyle(color: Colors.white),)),
+                  child: const Text(
+                    "圆形按钮",
+                    style: TextStyle(color: Colors.white),
+                  )),
             )
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+                child: SizedBox(
+              height: 150,
+              child: OutlinedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      side: MaterialStateProperty.all(
+                          const BorderSide(color: Colors.lightGreen))),
+                  child: const Text("自定义外边框颜色按钮，自适应父容器按钮")),
+            ))
           ],
         )
       ],
