@@ -71,7 +71,7 @@ class MySearch extends StatelessWidget {
                 Divider(),
                 ListTile(title: Text("东风快递"),),
                 Divider(),
-                ListTile(title: Text("使命必达"),),
+                ListTile(title: Text("使命必达."),),
               ],
             ),
           ),
