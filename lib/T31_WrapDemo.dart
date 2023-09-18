@@ -54,7 +54,7 @@ class MySearch extends StatelessWidget {
             ],
           ),
           const Text("历史记录",style: TextStyle(color: Colors.grey),),
-          Container(
+          SizedBox(
             height: 500,
             child:  ListView(
               children: const[
@@ -74,7 +74,8 @@ class MySearch extends StatelessWidget {
                 ListTile(title: Text("使命必达"),),
               ],
             ),
-          )
+          ),
+          OutlinedButton.icon(onPressed: (){}, icon:const Icon(Icons.delete), label:const Text("删除"))
         ],
       ),
     );
