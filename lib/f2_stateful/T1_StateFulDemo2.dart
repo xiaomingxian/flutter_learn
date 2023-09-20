@@ -40,6 +40,11 @@ class _MyHomePage2State extends State<MyHomePage2> {
         onPressed: () {
           setState(() {
             _index++;
+            //修改后界面不显示问题解释:
+            //这个代码中,_data 列表是在 build 方法外定义的,每次 setState 后会重新构建页面,但不会重新创建 _data 列表。
+            // 所以即使在 setState 内添加了新的 ListTile 到 _data 中,但这个变化没有通知到 ListView,它仍然显示旧的 _data 内容。
+            // 要解决这个问题,需要在 setState 内创建一个新的 _data 列表,而不是直接修改旧列表:
+
             // List.from(_data) 会创建一个新的列表,复制 _data 中的元素。
             // 然后 ..add(ListTile()) 在这个新列表上添加一个元素
             _data=List.from(_data)..add(ListTile(
