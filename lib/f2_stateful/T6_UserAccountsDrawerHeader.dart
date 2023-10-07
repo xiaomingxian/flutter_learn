@@ -19,6 +19,7 @@ class _MyUserAccountDrawerHeaderState extends State<MyUserAccountDrawerHeader> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: const Text("用户抽屉表头demo"),
       ),
       body: Container(

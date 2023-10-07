@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 main() {
   runApp(MaterialApp(
     home: Scaffold(
-      appBar: AppBar(
-        title: const Text("抽屉demo2"),
-      ),
+      // appBar: AppBar(
+      //   title: const Text("抽屉demo2"),
+      // ),
       body: Container(
         alignment: Alignment.center,
         child: const Text("抽屉demo2"),
