@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// demo:顶部的tab bar
 ///步骤
 /// 1.混入 SingleTickerProviderStateMixin
 /// 2.定义TabController
+///
 main() {
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -27,7 +29,7 @@ class _MyTabBarState extends State<MyTabBar>
   // 2.定义TabController
   late TabController _tabController;
   late List<Tab> _tabs;
-  late List<TabBarView> _tabBarViews;
+  late List<Widget> _tabBarViews;
 
   ///生命周期函数 当组件初始化时触发
   ///可以在这里给 tabController 初始化值
@@ -37,15 +39,33 @@ class _MyTabBarState extends State<MyTabBar>
     super.initState();
     print("初始化数据...");
     //第二个参数 TickerProvider
-    _tabController = TabController(length: 6, vsync: this);
+    int size=10;
+    _tabController = TabController(length: size, vsync: this);
+    _tabs=[];
+    _tabBarViews=[];
+    for (int i = 0; i < size; i++) {
+      //todo 生成数据
+      _tabs.add(
+        Tab(
+          child: Text("tab$i"),
+        ),
+      );
+
+      _tabBarViews.add(
+        ListView(
+          children:  [
+            ListTile(
+              title: Text("我是推荐列表$i"),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < 10; i++) {
-      //todo 生成数据
-      // _tabs.add();
-    }
+
     print("build 组件 ...");
     return Scaffold(
         appBar: AppBar(
@@ -78,74 +98,12 @@ class _MyTabBarState extends State<MyTabBar>
           bottom: TabBar(
             isScrollable: true, //是否可以滚动
             controller: _tabController,
-            tabs: const [
-              Tab(
-                child: Text("关注"),
-              ),
-              Tab(
-                child: Text("热门"),
-              ),
-              Tab(
-                child: Text("推荐"),
-              ),
-              Tab(
-                child: Text("推荐1"),
-              ),
-              Tab(
-                child: Text("推荐2"),
-              ),
-              Tab(
-                child: Text("推荐3"),
-              ),
-            ],
+            tabs: _tabs,
           ),
         ),
         body: TabBarView(
           controller: _tabController,
-          children: [
-            ListView(
-              children: const [
-                ListTile(
-                  title: Text("我是关注列表"),
-                ),
-              ],
-            ),
-            ListView(
-              children: const [
-                ListTile(
-                  title: Text("我是热门列表"),
-                ),
-              ],
-            ),
-            ListView(
-              children: const [
-                ListTile(
-                  title: Text("我是推荐列表"),
-                ),
-              ],
-            ),
-            ListView(
-              children: const [
-                ListTile(
-                  title: Text("我是推荐列表1"),
-                ),
-              ],
-            ),
-            ListView(
-              children: const [
-                ListTile(
-                  title: Text("我是推荐列表2"),
-                ),
-              ],
-            ),
-            ListView(
-              children: const [
-                ListTile(
-                  title: Text("我是推荐列表3"),
-                ),
-              ],
-            ),
-          ],
+          children: _tabBarViews,
         ));
   }
 }
