@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
   final Map arguments;
-  const SearchPage({Key? key,required this.arguments}) : super(key: key);
+
+  const SearchPage({Key? key, required this.arguments}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-
   @override
   void initState() {
-    // TODO: implement initState
     print('接受到的参数:${widget.arguments}');
     super.initState();
   }

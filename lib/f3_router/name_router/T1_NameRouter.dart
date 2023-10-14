@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/f3_router/name_router/HomePage.dart';
-import 'package:flutter_learn/f3_router/name_router/SearchPage.dart';
+import 'package:flutter_learn/f3_router/name_router/t1_package/HomePage.dart';
+import 'package:flutter_learn/f3_router/name_router/t1_package/Register1.dart';
+import 'package:flutter_learn/f3_router/name_router/t1_package/Register2.dart';
+import 'package:flutter_learn/f3_router/name_router/t1_package/SearchPage.dart';
 
 main() {
   runApp(RouterHomePage());
@@ -16,6 +19,8 @@ class RouterHomePage extends StatefulWidget {
 class _RouterHomePageState extends State<RouterHomePage> {
   Map<String, Widget Function(BuildContext)> routes = {
     "/": (context) => const HomePage(),
+    "/register1": (context) => const Register1(),
+    "/register2": (context) => const Register2(),
     //因为是命名参数 所以得加括号 {arguments}
     "/search": (context, {arguments}) => SearchPage(arguments: arguments,)
   };
@@ -36,7 +41,10 @@ class _RouterHomePageState extends State<RouterHomePage> {
         if (pageContentBuilder != null) {
           //有没有参数
           if (settings.arguments != null) {
-            final Route route = MaterialPageRoute(
+            //安卓风格跳转
+            // final Route route = MaterialPageRoute(
+            //苹果风格跳转
+            final Route route = CupertinoPageRoute(
                 builder: (context) =>
                     //传递参数
                     pageContentBuilder(context, arguments: settings.arguments));
