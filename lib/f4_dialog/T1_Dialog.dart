@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 main() {
   runApp(const MaterialApp(
@@ -22,7 +23,7 @@ class _MyDialogState extends State<MyDialog> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ElevatedButton.icon(
                 onPressed: () {
@@ -30,7 +31,26 @@ class _MyDialogState extends State<MyDialog> {
                   showAlertDialog(context);
                 },
                 icon: Icon(Icons.show_chart),
-                label: Text("展示Dialog"))
+                label: Text("展示Dialog")),
+            ElevatedButton.icon(
+                onPressed: () {
+                  print('点击选项');
+                  showSimpleDialog(context);
+                },
+                icon: const Icon(Icons.show_chart),
+                label: const Text("展示select弹框")),
+            ElevatedButton.icon(
+                onPressed: () {
+                  showBottomContent(context);
+                },
+                icon: Icon(Icons.show_chart),
+                label: Text("底部展示")),
+            ElevatedButton.icon(
+                onPressed: () {
+                  showToast(context);
+                },
+                icon: Icon(Icons.show_chart),
+                label: Text("展示Tostal")),
           ],
         ),
       ),
@@ -67,5 +87,90 @@ class _MyDialogState extends State<MyDialog> {
           );
         });
     print("获取返回值:${res}");
+  }
+
+  showSimpleDialog(BuildContext context) async {
+    var res = await showDialog(
+        context: context,
+        builder: (content) {
+          return SimpleDialog(
+            title: Text("选项"),
+            children: [
+              SimpleDialogOption(
+                child: Text("Java"),
+                onPressed: () {
+                  Navigator.of(context).pop("选择了Java");
+                },
+              ),
+              SimpleDialogOption(
+                child: Text("Python"),
+                onPressed: () {
+                  Navigator.of(context).pop("选择了Python");
+                },
+              ),
+              SimpleDialogOption(
+                child: Text("Golang"),
+                onPressed: () {
+                  Navigator.of(context).pop("选择了Golang");
+                },
+              ),
+              SimpleDialogOption(
+                child: Text("Flutter"),
+                onPressed: () {
+                  Navigator.of(context).pop("选择了Flutter");
+                },
+              ),
+            ],
+          );
+        });
+    print("获取到的结果:${res}");
+  }
+
+  showBottomContent(BuildContext context) async {
+    var res = await showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+              height: 200,
+              child: Center(
+                child: ListView(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        "英语",
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pop("选择了英语");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("俄语"),
+                      onTap: () {
+                        Navigator.of(context).pop("选择了俄语");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("中文"),
+                      onTap: () {
+                        Navigator.of(context).pop("选择了中文");
+                      },
+                    ),
+                  ],
+                ),
+              ));
+        });
+    print("选择的结果:${res}");
+  }
+
+  void showToast(BuildContext context) {
+    Fluttertoast.showToast(
+        msg: "恭喜你胜利了",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 15.0
+    );
   }
 }

@@ -43,6 +43,7 @@ dependencies:
   game_levels_scrolling_map: ^0.0.7
   english_words: ^4.0.0
   curved_navigation_bar: ^1.0.3
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
