@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'dialog_package/MyDiaLog.dart';
+
 main() {
   runApp(const MaterialApp(
     home: MyDialog(),
@@ -51,10 +53,21 @@ class _MyDialogState extends State<MyDialog> {
                 },
                 icon: Icon(Icons.show_chart),
                 label: Text("展示Tostal")),
+            ElevatedButton.icon(
+                onPressed: _myDiaLog,
+                icon: Icon(Icons.message),
+                label: Text("自定义Dialog")),
           ],
         ),
       ),
     );
+  }
+
+  _myDiaLog() {
+    print("自定义Dialog");
+    return showDialog(context: context, builder:(context){
+      return const MyDiaLog();
+    });
   }
 
   ///async 同步方法获取返回值  showDialog 是个异步方法
@@ -170,7 +183,6 @@ class _MyDialogState extends State<MyDialog> {
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
         textColor: Colors.white,
-        fontSize: 15.0
-    );
+        fontSize: 15.0);
   }
 }
