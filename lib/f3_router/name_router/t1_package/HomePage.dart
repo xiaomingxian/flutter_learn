@@ -15,7 +15,8 @@ class _HomePageState extends State<HomePage> {
         title: Text("Home Page"),
       ),
       body: Center(
-        child: ListView(children: [
+          child: ListView(
+        children: [
           ElevatedButton.icon(
               onPressed: () {
                 Navigator.pushNamed(context, '/search',
@@ -29,8 +30,14 @@ class _HomePageState extends State<HomePage> {
               },
               icon: Icon(Icons.app_registration),
               label: Text("注册")),
-        ],)
-      ),
+          ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/banner');
+              },
+              icon: Icon(Icons.picture_as_pdf),
+              label: Text("查看banner")),
+        ],
+      )),
     );
   }
 }

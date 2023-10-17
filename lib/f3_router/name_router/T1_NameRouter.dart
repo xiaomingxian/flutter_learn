@@ -5,6 +5,8 @@ import 'package:flutter_learn/f3_router/name_router/t1_package/Register1.dart';
 import 'package:flutter_learn/f3_router/name_router/t1_package/Register2.dart';
 import 'package:flutter_learn/f3_router/name_router/t1_package/SearchPage.dart';
 
+import '../../f5_page_view/T4_PageViewAutoChange.dart';
+
 main() {
   runApp(RouterHomePage());
 }
@@ -22,7 +24,10 @@ class _RouterHomePageState extends State<RouterHomePage> {
     "/register1": (context) => const Register1(),
     "/register2": (context) => const Register2(),
     //因为是命名参数 所以得加括号 {arguments}
-    "/search": (context, {arguments}) => SearchPage(arguments: arguments,)
+    "/search": (context, {arguments}) => SearchPage(
+          arguments: arguments,
+        ),
+    "/banner": (context) =>const AutoChange(),
   };
 
   @override

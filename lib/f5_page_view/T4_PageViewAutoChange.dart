@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 main() {
@@ -14,14 +16,11 @@ class AutoChange extends StatefulWidget {
 class _AutoChangeState extends State<AutoChange> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("轮播图Demo"),
-        ),
-        body: ListView(children: [Swipe()]),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("轮播图Demo"),
       ),
+      body: ListView(children: [Swipe()]),
     );
   }
 }
@@ -40,6 +39,8 @@ class _SwipeState extends State<Swipe> {
   int _currentIndex = 0;
 
   late final List images;
+  late PageController _pageController;
+  late Timer _timer;
 
   @override
   void initState() {
@@ -50,7 +51,24 @@ class _SwipeState extends State<Swipe> {
                   fit: BoxFit.cover),
             ))
         .toList();
+    _pageController = PageController(initialPage: _currentIndex);
+
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      _pageController.animateToPage((_currentIndex + 1) % images.length,
+          //动画持续时间
+          duration: const Duration(microseconds: 3000),
+          //现行变化
+          curve: Curves.linear);
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _pageController.dispose();
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -60,11 +78,20 @@ class _SwipeState extends State<Swipe> {
         SizedBox(
             width: double.infinity,
             height: 200,
-            child: PageView.builder(itemBuilder: (context, index) {
-              _currentIndex = index;
-              print("当前索引:$_currentIndex");
-              return images[index];
-            })),
+            child: PageView.builder(
+                controller: _pageController,
+                onPageChanged: (int index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                itemCount: images.length,
+                itemBuilder: (context, index) {
+                  //加入缓存功能
+                  return KeepAliveBanner(
+                    child: images[index],
+                  );
+                })),
         Positioned(
             bottom: 10,
             left: 0,
@@ -88,16 +115,35 @@ class _SwipeState extends State<Swipe> {
   }
 }
 
-class PicPage extends StatefulWidget {
-  const PicPage({Key? key}) : super(key: key);
+///缓存组件 定义方式改为：缓存组件(需要缓存的组件)
+class KeepAliveBanner extends StatefulWidget {
+  final Widget child;
+  final bool keepAlive;
+
+  const KeepAliveBanner({Key? key, required this.child, this.keepAlive = true})
+      : super(key: key);
 
   @override
-  _PicPageState createState() => _PicPageState();
+  _KeepAliveBannerState createState() => _KeepAliveBannerState();
 }
 
-class _PicPageState extends State<PicPage> {
+class _KeepAliveBannerState extends State<KeepAliveBanner>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return widget.child!;
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+
+  @override
+  void didUpdateWidget(covariant KeepAliveBanner oldWidget) {
+    // TODO: implement didUpdateWidget
+    if (oldWidget.keepAlive != widget.keepAlive) {
+      updateKeepAlive();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 }
