@@ -89,7 +89,7 @@ class _SwipeState extends State<Swipe> {
                 itemBuilder: (context, index) {
                   //加入缓存功能
                   return KeepAliveBanner(
-                    child: images[index],
+                    child: MyBanner(widget: images[index]),
                   );
                 })),
         Positioned(
@@ -115,6 +115,22 @@ class _SwipeState extends State<Swipe> {
   }
 }
 
+class MyBanner extends StatefulWidget {
+  final Widget widget;
+
+  const MyBanner({Key? key, required this.widget}) : super(key: key);
+
+  @override
+  _MyBannerState createState() => _MyBannerState();
+}
+
+class _MyBannerState extends State<MyBanner> {
+  @override
+  Widget build(BuildContext context) {
+    return widget.widget;
+  }
+}
+
 ///缓存组件 定义方式改为：缓存组件(需要缓存的组件)
 class KeepAliveBanner extends StatefulWidget {
   final Widget child;
@@ -136,11 +152,11 @@ class _KeepAliveBannerState extends State<KeepAliveBanner>
 
   @override
   // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => widget.keepAlive;
 
   @override
   void didUpdateWidget(covariant KeepAliveBanner oldWidget) {
-    // TODO: implement didUpdateWidget
+    print("====+>>>>>>>old:${oldWidget.keepAlive},现在的:${widget.keepAlive}");
     if (oldWidget.keepAlive != widget.keepAlive) {
       updateKeepAlive();
     }
