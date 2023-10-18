@@ -8,7 +8,7 @@ import 'package:flutter_learn/f3_router/name_router/t1_package/SearchPage.dart';
 import '../../f5_page_view/T4_PageViewAutoChange.dart';
 
 main() {
-  runApp(RouterHomePage());
+  runApp(const RouterHomePage());
 }
 
 class RouterHomePage extends StatefulWidget {
@@ -33,6 +33,7 @@ class _RouterHomePageState extends State<RouterHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       //初始路由 todo  当使用 initialRoute 时，需要确保你没有同时定义 home 属性。
       initialRoute: '/',
       //用这种方式不能传递参数？

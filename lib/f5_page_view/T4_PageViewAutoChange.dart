@@ -18,7 +18,7 @@ class _AutoChangeState extends State<AutoChange> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("轮播图Demo"),
+        title:const Text("轮播图Demo"),
       ),
       body: ListView(children: [Swipe()]),
     );
@@ -27,7 +27,6 @@ class _AutoChangeState extends State<AutoChange> {
 
 ///滑动元素生成
 class Swipe extends StatefulWidget {
-  final List<Widget> data = [];
 
   Swipe({Key? key}) : super(key: key);
 
@@ -37,24 +36,18 @@ class Swipe extends StatefulWidget {
 
 class _SwipeState extends State<Swipe> {
   int _currentIndex = 0;
-
   late final List images;
   late PageController _pageController;
   late Timer _timer;
 
   @override
   void initState() {
-    images = [1, 2, 3]
-        .map((e) => SizedBox(
-              child: Image.network(
-                  "https://www.itying.com/images/flutter/$e.png",
-                  fit: BoxFit.cover),
-            ))
-        .toList();
+    images = [1, 2, 3].map((e) => {MyBanner(index: e)}).toList();
     _pageController = PageController(initialPage: _currentIndex);
 
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      _pageController.animateToPage((_currentIndex + 1) % images.length,
+      int idx = (_currentIndex+1) % images.length;
+      _pageController.animateToPage(idx,
           //动画持续时间
           duration: const Duration(microseconds: 3000),
           //现行变化
@@ -65,7 +58,6 @@ class _SwipeState extends State<Swipe> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _pageController.dispose();
     _timer.cancel();
     super.dispose();
@@ -87,10 +79,7 @@ class _SwipeState extends State<Swipe> {
                 },
                 itemCount: images.length,
                 itemBuilder: (context, index) {
-                  //加入缓存功能
-                  return KeepAliveBanner(
-                    child: MyBanner(widget: images[index]),
-                  );
+                  return MyBanner(index: index+1);
                 })),
         Positioned(
             bottom: 10,
@@ -98,7 +87,7 @@ class _SwipeState extends State<Swipe> {
             right: 0,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(3, (index) {
+              children: List.generate(images.length, (index) {
                 return Container(
                   margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
                   width: 10,
@@ -116,9 +105,9 @@ class _SwipeState extends State<Swipe> {
 }
 
 class MyBanner extends StatefulWidget {
-  final Widget widget;
+  final int index;
 
-  const MyBanner({Key? key, required this.widget}) : super(key: key);
+  const MyBanner({Key? key, required this.index}) : super(key: key);
 
   @override
   _MyBannerState createState() => _MyBannerState();
@@ -127,39 +116,11 @@ class MyBanner extends StatefulWidget {
 class _MyBannerState extends State<MyBanner> {
   @override
   Widget build(BuildContext context) {
-    return widget.widget;
-  }
-}
-
-///缓存组件 定义方式改为：缓存组件(需要缓存的组件)
-class KeepAliveBanner extends StatefulWidget {
-  final Widget child;
-  final bool keepAlive;
-
-  const KeepAliveBanner({Key? key, required this.child, this.keepAlive = true})
-      : super(key: key);
-
-  @override
-  _KeepAliveBannerState createState() => _KeepAliveBannerState();
-}
-
-class _KeepAliveBannerState extends State<KeepAliveBanner>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  Widget build(BuildContext context) {
-    return widget.child!;
-  }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => widget.keepAlive;
-
-  @override
-  void didUpdateWidget(covariant KeepAliveBanner oldWidget) {
-    print("====+>>>>>>>old:${oldWidget.keepAlive},现在的:${widget.keepAlive}");
-    if (oldWidget.keepAlive != widget.keepAlive) {
-      updateKeepAlive();
-    }
-    super.didUpdateWidget(oldWidget);
+    print("初始化元素:${widget.index}");
+    return SizedBox(
+      child: Image.network(
+          "https://www.itying.com/images/flutter/${widget.index}.png",
+          fit: BoxFit.cover),
+    );
   }
 }
