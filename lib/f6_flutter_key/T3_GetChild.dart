@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// 在Flutter中，Key是不能重复使用的，所以Key一般用来做唯一标识。组件在更新的时候，其状态的保
-/// 存主要是通过判断【组件的类型或者key值是否一致】。
-/// 因此，当各组件的类型不同的时候，类型已经足够用来区分不同的组件了，此时我们可以不必使用key。
-/// 但是如果同时存在多个同一类型的控件的时候，此时类型已经无法作为区分的条件了，我们就需要使用到key。
-///
-/// 使用LocalKey切换屏幕方向 值没有保存 因为组件类型变了 Column <--> Row
+///获取子组件相关
+///globalKey.currentState 可以获取子组件的状态,执行子组件的方法，
+///globalKey.currentWidget 可以获取子组件的属性
+///_globalKey.currentContext!.findRenderObject() 可以获取渲染的属性
 main() {
   runApp(const MyErrDemo());
 }
@@ -33,43 +31,38 @@ class MyBody extends StatefulWidget {
 
 class _MyBodyState extends State<MyBody> {
   final GlobalKey _gk1 = GlobalKey();
-  final GlobalKey _gk2 = GlobalKey();
-  final GlobalKey _gk3 = GlobalKey();
-  late List<Widget> _list;
 
   @override
   void initState() {
-    _list = [
-      MyBox(key: _gk1, color: Colors.lightGreen),
-      MyBox(key: _gk2, color: Colors.blue),
-      MyBox(key: _gk3, color: Colors.red),
-    ];
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("屏幕方向:${MediaQuery.of(context).orientation}");
     return Scaffold(
       appBar: AppBar(
-        title: const Text("全局Key"),
+        title: const Text("子组件相关"),
       ),
       body: Center(
           //横竖屏切换 三元表达式
-          child: MediaQuery.of(context).orientation == Orientation.portrait
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: _list,
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: _list,
-                )),
+          child: MyBox(key: _gk1, color: Colors.lightGreen)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            //颜色换了数字没换
-            _list.shuffle();
+            //1.获取子组件状态，调用其属性,方法
+            var state = _gk1.currentState as _MyBoxState;
+            setState(() {
+              state.count++;
+              print("获取属性:${state.count}");
+            });
+            //调用方法
+            state.fun();
+            //2.获取子组件属性
+            var widget=_gk1.currentWidget as MyBox;
+            print(widget.color);
+            //3.获取子组件渲染的属性
+            var renderBox=_gk1.currentContext!.findRenderObject() as RenderBox;
+            print(renderBox.size);
           });
         },
         child: const Icon(Icons.refresh),
@@ -89,6 +82,10 @@ class MyBox extends StatefulWidget {
 
 class _MyBoxState extends State<MyBox> {
   int count = 0;
+
+  void fun() {
+    print("我是子类State中的方法...");
+  }
 
   @override
   Widget build(BuildContext context) {

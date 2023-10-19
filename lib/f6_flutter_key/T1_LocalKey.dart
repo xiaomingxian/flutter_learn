@@ -41,7 +41,7 @@ class _MyBodyState extends State<MyBody> {
     print("屏幕方向:${MediaQuery.of(context).orientation}");
     return Scaffold(
       appBar: AppBar(
-        title: const Text(" Flutter Key 错误示例"),
+        title: const Text("局部Key"),
       ),
       body: Center(
         child: Column(
