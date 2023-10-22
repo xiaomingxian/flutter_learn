@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 5),
     );
     super.initState();
   }
@@ -40,13 +40,13 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             SlideTransition(
               position: _controller
                   //参数是相对于child的宽高  Offset(super.dx, super.dy):dx 和 dy 表示子组件相对于原位置的水平和垂直位移量
-                  .drive(
-                  Tween(begin: Offset(0, 0), end: Offset(1, 1))
-                  //运动效果 线性或者其他...
+                  .drive(Tween(begin: Offset(0, 0), end: Offset(1, 1))
+                      //运动效果 线性或者其他...
                       .chain(CurveTween(curve: Curves.bounceIn))
-                  //连续动画
+                      //连续动画
                       .chain(CurveTween(curve: Curves.easeInCirc))
-              ),
+                      //运动时长 前20%时间开始 80%位置停止 0.5很明显
+                      .chain(CurveTween(curve: const Interval(0.2, 0.8)))),
               child: Container(
                 height: 100,
                 width: 100,
