@@ -1,4 +1,4 @@
-import 'package:flutter_learn/model/User.dart';
+import 'package:flutter_learn/t1_itying/model/User.dart';
 
 void main() {
   var user = new User();

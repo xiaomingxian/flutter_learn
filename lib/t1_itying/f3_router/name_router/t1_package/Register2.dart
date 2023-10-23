@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/f3_router/name_router/t1_package/HomePage.dart';
+import 'package:flutter_learn/t1_itying/f3_router/name_router/t1_package/HomePage.dart';
 
 class Register2 extends StatefulWidget {
   const Register2({Key? key}) : super(key: key);
