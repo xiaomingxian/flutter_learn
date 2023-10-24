@@ -1,4 +1,8 @@
+import 'package:flutter_learn/t2_mooc_bilibili/http/core/HiNetErr.dart';
+import 'package:flutter_learn/t2_mooc_bilibili/http/core/HiNetRes.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/http/request/BaseRequest.dart';
+
+import 'MockAdapter.dart';
 
 ///在这个代码中,async和await都是用于异步编程的关键字。
 ///
@@ -19,24 +23,44 @@ import 'package:flutter_learn/t2_mooc_bilibili/http/request/BaseRequest.dart';
 /// 这样可以同步代码的写法,却实现异步的效果,非常方便
 /// 所以在这里,async和await让代码可以更清晰直观地表达异步调用的逻辑
 
-class HiNet{
+class HiNet {
+  // HiNet._();
+
   ///私有构造方法
-  HiNet._();
-  static late HiNet _instance;
-  static HiNet getInstance(){
-    //在 Dart 中,??= 是一个运算符,表示 null 合并赋值(null-aware assignment)
-    _instance ??= HiNet._();
+  static final HiNet _instance=HiNet();
+
+  static HiNet getInstance() {
     return _instance;
   }
 
+
   Future fire(BaseRequest request) async {
-    var res = await send(request);
-    return res['data'];
+    //返回统一响应
+    HiNetRes res;
+    try{
+       res = await send(request);
+    }on HiNetErr catch(e){
+      res=e.data;
+    }catch(e){
+      res=HiNetRes(code: -1,msg: "未知错误");
+    }
+   int resCode= res.code;
+    switch(resCode){
+      case 200:
+        return res.data;
+      case 401:
+        throw LoginErr();
+      case 403:
+        throw AuthErr(res.msg);
+      default:
+        throw HiNetErr(-1, "未知错误");
+    }
+    return res;
   }
 
   ///dynamic 可以是各种类型 也可以是没有返回值
-  Future<dynamic> send<T> (BaseRequest request) async{
-    return Future.value({"code":0,"message":"success","data":[1,2,3]});
-  }
+  Future<dynamic> send<T>(BaseRequest request) async {
 
+    return MockAdapter().send(request);
+  }
 }

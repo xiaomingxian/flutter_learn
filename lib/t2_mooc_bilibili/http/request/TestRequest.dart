@@ -8,6 +8,6 @@ class TestRequest extends BaseRequest {
 
   @override
   String path() {
-    throw "/api/test";
+    return "/api/site/checkLoginByToken";
   }
 }

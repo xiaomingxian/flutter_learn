@@ -5,8 +5,10 @@ enum HttpMethod { GET, POST, DELETE }
 /// 则无法在编译期报错，而会在运行期报错
 
 abstract class BaseRequest {
+  final String domain = "https://beta-admin.edianzu.cn";
+
   ///路径参数
-  var pathParams;
+  var pathParams = {};
 
   /// 是否用https
   var useHttps = true;
@@ -25,14 +27,14 @@ abstract class BaseRequest {
   String url() {
     Uri uri;
     String pathStr = path();
-    if (pathParams != null) {
+    if (pathParams.isEmpty) {
       pathStr =
           pathStr.endsWith("/") ? "$path()$pathParams" : "$path()/$pathParams";
     }
     uri = useHttps
         ? Uri.https(authority(), pathStr, params)
         : Uri.http(authority(), pathStr, params);
-    return uri.toString();
+    return domain + uri.toString();
   }
 
   String authority() {
@@ -46,7 +48,7 @@ abstract class BaseRequest {
   }
 
   BaseRequest addHeader(String k, String v) {
-    header[k]=v;
+    header[k] = v;
     return this;
   }
 }
