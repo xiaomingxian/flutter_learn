@@ -37,23 +37,28 @@ class HiNet {
   Future fire(BaseRequest request) async {
     //返回统一响应
     HiNetRes res;
+    bool fail=false;
     try{
        res = await send(request);
     }on HiNetErr catch(e){
       res=e.data;
+      fail=true;
     }catch(e){
       res=HiNetRes(code: -1,msg: "未知错误");
+      fail=true;
     }
    int resCode= res.code;
-    switch(resCode){
-      case 200:
-        return res.data;
-      case 401:
-        throw LoginErr();
-      case 403:
-        throw AuthErr(res.msg);
-      default:
-        throw HiNetErr(-1, "未知错误");
+    if(fail){
+      switch(resCode){
+        case 200:
+          return res.data;
+        case 401:
+          throw LoginErr();
+        case 403:
+          throw AuthErr(res.msg);
+        default:
+          throw HiNetErr(-1, "未知错误");
+      }
     }
     return res;
   }

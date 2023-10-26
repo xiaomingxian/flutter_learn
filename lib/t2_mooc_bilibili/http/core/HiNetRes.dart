@@ -14,4 +14,12 @@ class HiNetRes<T> {
     }
     return super.toString();
   }
+
+  bool success(){
+    return code==200;
+  }
+
+  T? getData(){
+    return data;
+  }
 }
