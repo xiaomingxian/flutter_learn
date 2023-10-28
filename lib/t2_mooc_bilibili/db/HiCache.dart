@@ -11,7 +11,7 @@ class HiCache {
 
   static cacheData(String key, dynamic v) async {
     await _getSharedPreferences();
-    print("赋值时的实例化信息:$_sharedPreferences");
+    // print("赋值时的实例化信息:$_sharedPreferences");
     if (v is String) {
       _sharedPreferences!.setString(key, v);
     } else if (v is Bool) {
@@ -22,17 +22,17 @@ class HiCache {
   }
 
   static _getSharedPreferences() async {
-    print("实例化前的信息:$_sharedPreferences");
+    // print("实例化前的信息:$_sharedPreferences");
     _sharedPreferences ??= await SharedPreferences.getInstance();
-    print("---->>>>>获取实例时的实例信息:$_sharedPreferences");
+    // print("---->>>>>获取实例时的实例信息:$_sharedPreferences");
   }
 
   static Object? get(String key) {
     _getSharedPreferences();
-    print("获取值时：实例信息:$_sharedPreferences");
+    // print("获取值时：实例信息:$_sharedPreferences");
     var val = _sharedPreferences?.get(key);
-    print("查询到的缓存结果:$val");
-    return _sharedPreferences?.get(key);
+    // print("查询到的缓存结果:$val");
+    return val;
   }
 }
 

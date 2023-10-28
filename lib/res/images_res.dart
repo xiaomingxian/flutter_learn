@@ -5,5 +5,4 @@
 class ImagesRes {
   static const String PLUGIN_NAME = 'flutter_learn';
   static const String PLUGIN_VERSION = '1.0.0+1';
-  static const String ICON_512 = 'images/Icon-512.png';
 }
