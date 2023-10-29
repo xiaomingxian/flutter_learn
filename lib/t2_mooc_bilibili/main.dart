@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/page/RegisterPage.dart';
+import 'package:flutter_learn/t2_mooc_bilibili/util/LogUtil.dart';
 
 import 'constants/color.dart';
 
@@ -15,15 +16,16 @@ class BiliBiliHomePage extends StatefulWidget {
 }
 
 class _BiliBiliHomePageState extends State<BiliBiliHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: white
+      theme: ThemeData(primarySwatch: white),
+      home: RegisterPage(
+        jumpToLogin: () {
+          printLog("跳转登录页方法执行", StackTrace.current);
+        },
       ),
-      home: RegisterPage(),
     );
   }
 }
