@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
-const MaterialColor primary =
-    MaterialColor(0xffb7299, <int, Color>{50: Color(0xfff9db5)});
+///主色调
+const MaterialColor primary = const MaterialColor(
+  0xfffb7299,
+  const <int, Color>{50: const Color(0xffff9db5)},
+);
+
 
 ///材料
 const MaterialColor white = MaterialColor(0xFFFFFFF, <int, Color>{

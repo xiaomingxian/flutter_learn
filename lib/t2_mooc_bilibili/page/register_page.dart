@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/http/dao/UserAccountDao.dart';
-import 'package:flutter_learn/t2_mooc_bilibili/ui/AppBar.dart';
-import 'package:flutter_learn/t2_mooc_bilibili/ui/LoginInput.dart';
+import 'package:flutter_learn/t2_mooc_bilibili/widget/AppBar.dart';
+import 'package:flutter_learn/t2_mooc_bilibili/widget/LoginInput.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/util/LogUtil.dart';
 
 import '../common/common_err.dart';
-import '../ui/login_effect.dart';
+import '../widget/login_effect.dart';
 
 class RegisterPage extends StatefulWidget {
   final VoidCallback jumpToLogin;
@@ -116,19 +116,24 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void checkParams() async {
-    if (userName.isEmpty) {
+    if (userName!.isEmpty) {
       throw CommonException(-1, "用户名不得为空");
     }
-    if (pwd.isEmpty || pwdRe.isEmpty) {
+    if (pwd!.isEmpty || pwdRe!.isEmpty) {
       throw CommonException(-1, "密码不得为空");
     }
     if (pwdRe != pwd) {
       throw CommonException(-1, "密码输入不一致");
     }
-    if (phone.isEmpty) {
+    if (phone!.isEmpty) {
       throw CommonException(-1, "手机号不得为空");
     }
     var res = await UserAccountDao.register(userName, pwd, phone);
     printLog("注册结果:$res", StackTrace.current);
+    if(res){
+      if(widget.jumpToLogin!=null){
+
+      }
+    }
   }
 }
