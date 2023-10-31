@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/http/dao/UserAccountDao.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/util/LogUtil.dart';
+import 'package:flutter_learn/t2_mooc_bilibili/util/toast.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/widget/AppBar.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/widget/LoginInput.dart';
 import 'package:flutter_learn/t2_mooc_bilibili/widget/login_button.dart';
@@ -37,7 +38,10 @@ class _LoginPageState extends State<LoginPage> {
                 title: "用户名",
                 hint: "请输入用户名",
                 onChanged: (text) {
-                  userName = text;
+                  setState(() {
+                    userName = text;
+                    loginEnable = userName.isNotEmpty && pwd.isNotEmpty;
+                  });
                 },
                 focusChanged: (focus) {},
                 keyBoardType: TextInputType.text),
@@ -46,7 +50,10 @@ class _LoginPageState extends State<LoginPage> {
                 hint: "请输入密码",
                 obscureText: true,
                 onChanged: (text) {
-                  pwd = text;
+                  setState(() {
+                    pwd = text;
+                    loginEnable = userName.isNotEmpty && pwd.isNotEmpty;
+                  });
                 },
                 focusChanged: (focus) {
                   setState(() {
@@ -63,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
               child: LoginButton(
                 "登陆",
                 enable: loginEnable,
-                onPressed: _send(),
+                onPressed:send,
               ),
             )
           ],
@@ -72,11 +79,12 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _send() {
-    loginEnable = userName.isNotEmpty && pwd.isNotEmpty;
+  send() {
+
     if (loginEnable) {
       UserAccountDao.login(userName!, pwd!).then((res) {
         LogUtil.printLog("登陆结果:$res", StackTrace.current);
+        showSuccessToast("登陆成功");
       });
     }
   }
