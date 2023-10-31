@@ -16,12 +16,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool protect = false;
-  String userName='';
-  String pwd='';
+  String userName = '';
+  String pwd = '';
   bool loginEnable = false;
 
   @override
   Widget build(BuildContext context) {
+    print('重新加载111');
     return Scaffold(
       appBar: appBar("登陆", "注册", () {
         LogUtil.printLog("点击了登录右侧按钮", StackTrace.current);
@@ -35,33 +36,48 @@ class _LoginPageState extends State<LoginPage> {
             LoginInput(
                 title: "用户名",
                 hint: "请输入用户名",
-                onChanged: (text) {},
+                onChanged: (text) {
+                  userName = text;
+                },
                 focusChanged: (focus) {},
                 keyBoardType: TextInputType.text),
             LoginInput(
                 title: "密码",
                 hint: "请输入密码",
                 obscureText: true,
-                onChanged: (text) {},
+                onChanged: (text) {
+                  pwd = text;
+                },
                 focusChanged: (focus) {
-                 setState(() {
-                   protect=focus;
-                 });
+                  setState(() {
+                    protect = focus;
+                  });
                 },
                 keyBoardType: TextInputType.text),
-           Padding(padding: EdgeInsets.only(top: 20,left: 20,right: 20,),child:  LoginButton(
-             "登陆",
-             enable: loginEnable,
-             onPressed: _send(),
-           ),)
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 20,
+                left: 20,
+                right: 20,
+              ),
+              child: LoginButton(
+                "登陆",
+                enable: loginEnable,
+                onPressed: _send(),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  _send()  {
-    var res =  UserAccountDao.login(userName!, pwd!);
-    LogUtil.printLog("登陆结果:$res", StackTrace.current);
+  _send() {
+    loginEnable = userName.isNotEmpty && pwd.isNotEmpty;
+    if (loginEnable) {
+      UserAccountDao.login(userName!, pwd!).then((res) {
+        LogUtil.printLog("登陆结果:$res", StackTrace.current);
+      });
+    }
   }
 }

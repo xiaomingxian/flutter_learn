@@ -7,6 +7,7 @@ class LoginButton extends StatelessWidget {
   final VoidCallback? onPressed;
   const LoginButton(this.title,{Key? key,this.enable=false,this.onPressed}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return  FractionallySizedBox(
@@ -16,7 +17,7 @@ class LoginButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6)),
           height: 45,
-          onLongPress: enable?onPressed:null,
+          onLongPress:enable? onPressed:null,
           disabledColor: primary[50],
           color: primary,
           child:Text(title,style: TextStyle(color: Colors.white,fontSize: 16),)),
