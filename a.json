@@ -1,0 +1,37 @@
+[
+  {
+    "formKey": "orgEmployeeId",
+    "userValue": "2504",
+    "valReadability": "2504"
+  },
+  {
+    "formKey": "orgEmployeeName",
+    "userValue": "耿腾",
+    "valReadability": "耿腾"
+  },
+  {
+    "formKey": "orgEmployeeJobRank",
+    "userValue": "M1",
+    "valReadability": "M1"
+  },
+  {
+    "formKey": "orgEmployeeJobRankType",
+    "userValue": "M",
+    "valReadability": "M"
+  },
+  {
+    "formKey": "orgEmployeePhone",
+    "userValue": "15010046561",
+    "valReadability": "15010046561"
+  },
+  {
+    "formKey": "orgEmployeeDeptPathName",
+    "userValue": "#总裁室#硬件中心#设备运营部#设备管理部#北京仓储组",
+    "valReadability": "#总裁室#硬件中心#设备运营部#设备管理部#北京仓储组"
+  },
+  {
+    "formKey": "orgEmployeeDeptName",
+    "userValue": "北京仓储组",
+    "valReadability": "北京仓储组"
+  }
+]
