@@ -34,7 +34,7 @@ class _RouterHomePageState extends State<RouterHomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //初始路由 todo  当使用 initialRoute 时，需要确保你没有同时定义 home 属性。
+      //初始路由 todo  当使用 initialRoute 时，需 要确保你没有同时定义 home 属性。
       initialRoute: '/',
       //用这种方式不能传递参数？
       // routes: routes,
@@ -56,7 +56,7 @@ class _RouterHomePageState extends State<RouterHomePage> {
                     pageContentBuilder(context, arguments: settings.arguments));
             return route;
           } else {
-            final Route route = MaterialPageRoute(
+            final Route route = CupertinoPageRoute(
                 builder: (context) => pageContentBuilder(context));
             return route;
           }
