@@ -28,7 +28,14 @@ class _TabsState extends State<Tabs> {
 
     return  Scaffold(
         appBar: AppBar(
-          title: const Text("京东商城"),
+          toolbarHeight: 50,
+          backgroundColor: Colors.white,
+          title:const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Icon(Icons.travel_explore,color: Colors.pink,),
+            Text("旅游中国",style: TextStyle(color: Colors.black),)
+          ],),
         ),
         body:pages[_index],
         bottomNavigationBar: BottomNavigationBar(

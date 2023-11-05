@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widget/banner.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -13,14 +15,20 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: [
-          TextField(
-            decoration:
-                InputDecoration(suffixIcon: IconButton(icon:Icon(Icons.search,), onPressed: () {
-                  Navigator.pushNamed(context, "/search");
-                },), hintText: "搜索"),
-          )
+          BannerWidget()
         ],
       ),
     );
   }
 }
+
+
+/**
+ * 一个搜索框demo
+ *  TextField(
+    decoration:
+    InputDecoration(suffixIcon: IconButton(icon:Icon(Icons.search,), onPressed: () {
+    Navigator.pushNamed(context, "/search");
+    },), hintText: "搜索"),
+    )
+ */
