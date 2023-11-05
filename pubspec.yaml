@@ -44,12 +44,16 @@ dependencies:
   fluttertoast: ^8.2.2
   dio: ^5.3.3
   json_annotation: ^4.8.1
+# 本地存储
   shared_preferences: ^2.2.2
   logger: ^2.0.2+1
   validators: ^3.0.0
   flutter_html: ^2.2.1
   device_info_plus: ^8.2.2
   geolocator: ^10.1.0
+  video_player: ^2.8.1
+  chewie: ^1.5.0
+  connectivity_plus: ^2.1.0
 
 dev_dependencies:
   flutter_test:
