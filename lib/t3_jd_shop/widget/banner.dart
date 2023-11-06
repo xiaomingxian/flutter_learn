@@ -62,12 +62,30 @@ class _BannerWidgetState extends State<BannerWidget> {
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(15.0),
+                boxShadow: const [
+                  BoxShadow(color: Colors.grey,
+                    blurRadius: 5,
+                    offset: Offset(1, 1),
+                    spreadRadius: 2,)
+                ]
               ),
               child: Column(
+                // crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Center(
-                    child: Text("元素$i",style: TextStyle(color: Colors.white),),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    height: MediaQuery.of(context).size.width/10,
+                    width: MediaQuery.of(context).size.width/1.5,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child:  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("元素$i简介300字\n啊实践活动卡仕达酱阿是啊实打实",style: TextStyle(color: Colors.white),)
+                    ],)
                   ),
                 ],
               ),

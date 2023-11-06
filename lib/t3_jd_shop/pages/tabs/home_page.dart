@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widget/banner.dart';
+import '../../widget/recommand.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,7 +16,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: [
-          BannerWidget()
+          BannerWidget(),
+          getRecommendList(context)
         ],
       ),
     );

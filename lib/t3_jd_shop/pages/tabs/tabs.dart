@@ -27,17 +27,10 @@ class _TabsState extends State<Tabs> {
   Widget build(BuildContext context) {
 
     return  Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 50,
-          backgroundColor: Colors.white,
-          title:const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-            Icon(Icons.travel_explore,color: Colors.pink,),
-            Text("旅游中国",style: TextStyle(color: Colors.black),)
-          ],),
+        //自动适配刘海灵动岛
+        body: SafeArea(
+          child: pages[_index],
         ),
-        body:pages[_index],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _index,
           fixedColor: Colors.orange,
