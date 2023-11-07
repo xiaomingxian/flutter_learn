@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../widget/banner.dart';
-import '../../widget/recommand.dart';
+import '../../widget/hot_list.dart';
+import '../../widget/recommend.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,13 +14,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    print("屏幕高度:${MediaQuery.of(context).size.height}");
+    print("banner高度:${MediaQuery.of(context).size.width/10}");
+    print("猜你喜欢高度:130");
     return Scaffold(
-      body: Column(
-        children: [
-          BannerWidget(),
-          getRecommendList(context)
-        ],
-      ),
+      body: Container(
+        height: MediaQuery.of(context).size.height-10,
+        child: ListView(
+          children: [
+            BannerWidget(),
+            getHotList(context),
+            getRecommend(context)
+          ],
+        ),
+      )
     );
   }
 }

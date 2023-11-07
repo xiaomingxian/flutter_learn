@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 ///获取推荐列表
-Widget getRecommendList(BuildContext context) {
-  return SizedBox(
-    height: MediaQuery.of(context).size.height / 2,
+Widget getHotList(BuildContext context) {
+  return Container(
+    margin: EdgeInsets.only(left: 10,right: 10),
+    height: 150,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         getTitle(),
         SizedBox(
-          height: 130,
+          height: 100,
           child: getImgAndDesc(),
         )
       ],
@@ -19,7 +20,7 @@ Widget getRecommendList(BuildContext context) {
 
 Widget getTitle() {
   return Padding(
-    padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
+    padding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
     child: Text(
       "猜你喜欢",
       style: TextStyle(
@@ -36,7 +37,7 @@ Widget getImgAndDesc() {
       itemBuilder: (BuildContext context, int index) {
         return Container(
           child: Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(right: 20),
             child: Column(
               children: [
                 //第一行头像
