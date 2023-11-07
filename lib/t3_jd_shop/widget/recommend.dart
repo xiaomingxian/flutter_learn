@@ -40,8 +40,10 @@ List<Container> getRecommendData(BuildContext context) {
                     fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(20.0)),
           ),
-          getTitle(i),
-          getDetail(i),
+          Stack(children: [
+            Align(alignment: Alignment.centerLeft,child: getTitle(i),),
+            Align(alignment: Alignment.centerRight,child: getDetail(i),)
+          ],),
         ],
       ),
     );
@@ -56,7 +58,7 @@ Widget getTitle(int i ) {
     padding:const EdgeInsets.only(left: 20, top: 5, bottom: 5),
     child: Text(
       "元素$i",
-      style: const TextStyle( fontSize: 10, fontWeight: FontWeight.w400),
+      style: const TextStyle( fontSize: 10, fontWeight: FontWeight.w800),
     ),
   );
 }
