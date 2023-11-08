@@ -1,37 +1,31 @@
-[
-  {
-    "formKey": "orgEmployeeId",
-    "userValue": "2504",
-    "valReadability": "2504"
-  },
-  {
-    "formKey": "orgEmployeeName",
-    "userValue": "耿腾",
-    "valReadability": "耿腾"
-  },
-  {
-    "formKey": "orgEmployeeJobRank",
-    "userValue": "M1",
-    "valReadability": "M1"
-  },
-  {
-    "formKey": "orgEmployeeJobRankType",
-    "userValue": "M",
-    "valReadability": "M"
-  },
-  {
-    "formKey": "orgEmployeePhone",
-    "userValue": "15010046561",
-    "valReadability": "15010046561"
-  },
-  {
-    "formKey": "orgEmployeeDeptPathName",
-    "userValue": "#总裁室#硬件中心#设备运营部#设备管理部#北京仓储组",
-    "valReadability": "#总裁室#硬件中心#设备运营部#设备管理部#北京仓储组"
-  },
-  {
-    "formKey": "orgEmployeeDeptName",
-    "userValue": "北京仓储组",
-    "valReadability": "北京仓储组"
-  }
-]
+{
+  MeteringMode: 3,
+  ExposureBiasValue: 0.0,
+  DateTimeOriginal: 2023:06:22 18:02:13,
+  FocalPlaneYResolution: 1684.7387084960938,
+  Saturation: 0, SceneCaptureType: 2,
+  FNumber: 18.0, ShutterSpeedValue: 8.321928,
+  FocalPlaneXResolution: 1684.7387084960938,
+  ApertureValue: 8.33985,
+  FileSource: 3,
+  FocalPlaneResolutionUnit: 3,
+  Sharpness: 0,
+  GainControl: 0,
+  SceneType: 1,
+  FocalLength: 49.0,
+  Contrast: 0,
+  WhiteBalance: 1,
+  LightSource: 0,
+  DateTimeDigitized: 2023:06:22 18:02:13,
+  ExposureMode: 1,
+  ISOSpeedRatings: [500],
+  LensModel: NIKKOR Z 24-70mm f/4 S,
+  ExifVersion: [2, 3, 1],
+  CustomRendered: 1,
+  ExposureProgram: 1,
+  SubsecTimeOriginal: 016,
+  SubsecTimeDigitized: 16,
+  Flash: 0,
+  ExposureTime: 0.003125,
+  SensingMethod: 2,
+  LensMake: NIKON}

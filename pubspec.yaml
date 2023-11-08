@@ -58,7 +58,7 @@ dependencies:
   # 根据设计稿的高度来
   flutter_screenutil: ^5.9.0
   get: ^4.6.6
-
+  native_exif: ^0.5.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
