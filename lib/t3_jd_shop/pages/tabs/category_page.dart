@@ -8,7 +8,7 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  int currentIndex=0;
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,32 +17,48 @@ class _CategoryPageState extends State<CategoryPage> {
         padding: EdgeInsets.only(left: 20, right: 20),
         child: Row(
           children: [
-            Expanded(child: ListView(children:
-            getLeftMenu(),
-            ),flex: 2,),
-            Expanded(child: Text("占位符"),flex: 3,)
+            Expanded(
+              child: getLeftMenu(),
+              flex: 1,
+            ),
+            Expanded(
+             child: Text(""),
+             flex: 3,
+            )
           ],
         ),
       ),
     );
   }
 
-  getLeftMenu() {
-    List<Widget> list=[];
-    for(int i=0;i<50;i++){
-      InkWell inkWell= InkWell(child: Text("分类$i",style: TextStyle(fontWeight: FontWeight.w400,color:currentIndex==i?Colors.orange:Colors.black ),),onTap: (){
-        setState(() {
-          currentIndex=i;
+  Widget getLeftMenu() {
+    List<String> type = ["电脑", "手机", "穿戴设备", "家电", "日用百货", "出行", "手机配件"];
+    return ListView.builder(
+        itemCount: 30,
+        itemBuilder: (context, i) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              InkWell(
+                child: Container(
+                  height: 70,
+                  child: Text(
+                    "${type[i % type.length]}$i",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color:
+                            currentIndex == i ? Colors.orange : Colors.black),
+                  ),
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                ),
+                onTap: () {
+                  setState(() {
+                    currentIndex = i;
+                  });
+                },
+              )
+            ],
+          );
         });
-      },);
-      Container container= Container(
-        height: 40,
-        padding: EdgeInsets.only(left: 10,top:10,bottom: 10),
-        child: inkWell,decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20)
-      ),);
-      list.add(container);
-    }
-    return list;
   }
 }
