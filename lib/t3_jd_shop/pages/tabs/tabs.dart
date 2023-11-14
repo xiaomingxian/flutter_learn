@@ -16,11 +16,16 @@ class _TabsState extends State<Tabs> {
   int _index=0;
   late List<BottomNavigationBarItem> bars;
   late List<Widget> pages;
+
+  ///带缓存的控制器
+  late PageController _pageController;
   @override
   void initState() {
     //初始化bar和页面
     _initBarPages();
     super.initState();
+
+    _pageController=PageController(initialPage: _index);
   }
 
   @override
@@ -29,7 +34,13 @@ class _TabsState extends State<Tabs> {
     return  Scaffold(
         //自动适配刘海灵动岛
         body: SafeArea(
-          child: pages[_index],
+          child: PageView(
+            controller: _pageController,
+            children: pages,
+            onPageChanged: (index){
+              _index=index;
+            },
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _index,

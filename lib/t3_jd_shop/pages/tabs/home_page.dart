@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     print("屏幕高度:${MediaQuery.of(context).size.height}");
@@ -30,6 +30,10 @@ class _HomePageState extends State<HomePage> {
       )
     );
   }
+
+  ///保持状态
+  @override
+  bool get wantKeepAlive => true;
 }
 
 

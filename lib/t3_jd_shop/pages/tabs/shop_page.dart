@@ -8,11 +8,15 @@ class ShopPage extends StatefulWidget {
   _ShopPageState createState() => _ShopPageState();
 }
 
-class _ShopPageState extends State<ShopPage> {
+class _ShopPageState extends State<ShopPage> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: Text("我是购物页",),),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

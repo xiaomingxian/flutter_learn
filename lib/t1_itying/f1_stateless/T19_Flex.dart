@@ -23,7 +23,7 @@ class MyFlexHome extends StatelessWidget {
         child: MyButton(Icons.telegram,color:Colors.green,),),
       Expanded(
         flex: 2,
-        child: MyButton(Icons.facebook,color:Colors.black,),)
+        child: MyButton(Icons.facebook,color:Colors.black,),),
     ],);
   }
   // @override

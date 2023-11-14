@@ -8,11 +8,15 @@ class UserSettingPage extends StatefulWidget {
   _UserSettingPageState createState() => _UserSettingPageState();
 }
 
-class _UserSettingPageState extends State<UserSettingPage> {
+class _UserSettingPageState extends State<UserSettingPage> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: Text("我是用户中心",),),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

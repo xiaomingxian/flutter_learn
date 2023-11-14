@@ -7,7 +7,7 @@ class CategoryPage extends StatefulWidget {
   _CategoryPageState createState() => _CategoryPageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
+class _CategoryPageState extends State<CategoryPage> with AutomaticKeepAliveClientMixin{
   int currentIndex = 0;
 
   @override
@@ -61,4 +61,8 @@ class _CategoryPageState extends State<CategoryPage> {
           );
         });
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
