@@ -48,6 +48,7 @@ class _TabsState extends State<Tabs> {
           onTap: (index){
             setState(() {
               _index=index;
+              _pageController.jumpToPage(_index);
             });
           },
           type: BottomNavigationBarType.fixed,
