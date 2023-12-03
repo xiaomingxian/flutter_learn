@@ -21,7 +21,11 @@ samples, guidance on mobile development, and a full API reference.
 
 
 <hr>
+
 #### 序列化
+
+1. 简单方式 FlutterJsonBeanFactory 插件
+2. 官方推荐
 
 * 所需依赖
 ```properties
